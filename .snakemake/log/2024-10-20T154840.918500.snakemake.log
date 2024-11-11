@@ -1,0 +1,61 @@
+host: login01
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count
+--------------------  -------
+calculate_lines             1
+normalised_frequency        1
+output_frequency            1
+plot                        1
+subsample                   1
+total                       5
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct 20 15:48:40 2024]
+localrule normalised_frequency:
+    input: shuf.a.bed.gz
+    output: query_unsorted.hist, query_sorted.hist
+    jobid: 4
+    reason: Missing output files: query_sorted.hist
+    resources: tmpdir=/tmp
+
+[Sun Oct 20 15:48:46 2024]
+Finished job 4.
+1 of 5 steps (20%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct 20 15:48:46 2024]
+localrule calculate_lines:
+    input: query_sorted.hist
+    output: calculate_lines_to_pull.tsv
+    jobid: 3
+    reason: Missing output files: calculate_lines_to_pull.tsv; Input files updated by another job: query_sorted.hist
+    resources: tmpdir=/tmp
+
+[Sun Oct 20 15:48:46 2024]
+Finished job 3.
+2 of 5 steps (40%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct 20 15:48:46 2024]
+localrule subsample:
+    input: shuf.a.bed.gz, calculate_lines_to_pull.tsv
+    output: shuffled.bed.gz, output.bed.gz
+    jobid: 2
+    reason: Missing output files: output.bed.gz; Input files updated by another job: calculate_lines_to_pull.tsv; Code has changed since last execution
+    resources: tmpdir=/tmp
+
+RuleException in rule subsample in file /home/bec51310.iitr/workplace/project/rescale_to_reference/snakemake.smk, line 23:
+ValueError: Single '}' encountered in format string, when formatting the following:
+
+        zcat {input.bed} | shuf | gzip > {output.shuffled}
+        zcat {output.shuffled} | python scripts/rescaled.py | gzip > {output.final}
+        rm (output.shuffled}
+        

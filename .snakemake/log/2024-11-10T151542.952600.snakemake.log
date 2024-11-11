@@ -1,0 +1,10 @@
+host: login01
+Building DAG of jobs...
+InputFunctionException in rule normalised_frequency in file /home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk, line 17:
+Error:
+  AttributeError: 'Wildcards' object has no attribute 'sample'
+Wildcards:
+
+Traceback:
+  File "/home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk", line 19, in <lambda>
+  File "/home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk", line 13, in get_all_runs_for_a_sample (rule normalised_frequency, line 17, /home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk)

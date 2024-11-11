@@ -1,0 +1,13 @@
+host: login01
+Building DAG of jobs...
+InputFunctionException in rule subsample in file /home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk, line 29:
+Error:
+  KeyError: 'x'
+Wildcards:
+  run=x
+  rep=0
+Traceback:
+  File "/home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk", line 31, in <lambda>
+  File "/home/bec51310.iitr/miniforge3/envs/rescale_to_reference/lib/python3.12/site-packages/pandas/core/indexing.py", line 1183, in __getitem__
+  File "/home/bec51310.iitr/miniforge3/envs/rescale_to_reference/lib/python3.12/site-packages/pandas/core/frame.py", line 4221, in _get_value
+  File "/home/bec51310.iitr/miniforge3/envs/rescale_to_reference/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc (rule subsample, line 55, /home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk)

@@ -1,0 +1,89 @@
+host: login01
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count
+--------------------  -------
+lines                       1
+normalise                   1
+normalised_frequency        1
+plot                        1
+subsample                   1
+total                       5
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 24 20:51:53 2024]
+localrule normalised_frequency:
+    input: shuf.a.bed.gz
+    output: query_unsorted.hist, query.hist
+    jobid: 4
+    reason: Missing output files: query.hist
+    resources: tmpdir=/tmp
+
+[Thu Oct 24 20:51:58 2024]
+Finished job 4.
+1 of 5 steps (20%) done
+Removing temporary output query_unsorted.hist.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 24 20:51:58 2024]
+localrule lines:
+    input: query.hist
+    output: lines_to_pull.tsv
+    jobid: 3
+    reason: Missing output files: lines_to_pull.tsv; Input files updated by another job: query.hist
+    resources: tmpdir=/tmp
+
+[Thu Oct 24 20:51:58 2024]
+Finished job 3.
+2 of 5 steps (40%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 24 20:51:58 2024]
+localrule subsample:
+    input: shuf.a.bed.gz, lines_to_pull.tsv
+    output: shuffled.bed.gz, rescaled.bed.gz
+    jobid: 2
+    reason: Missing output files: rescaled.bed.gz; Input files updated by another job: lines_to_pull.tsv
+    resources: tmpdir=/tmp
+
+[Thu Oct 24 20:52:30 2024]
+Finished job 2.
+3 of 5 steps (60%) done
+Removing temporary output shuffled.bed.gz.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 24 20:52:30 2024]
+localrule normalise:
+    input: rescaled.bed.gz
+    output: rescaled_unsorted.hist, rescaled.hist
+    jobid: 1
+    reason: Missing output files: rescaled.hist; Input files updated by another job: rescaled.bed.gz
+    resources: tmpdir=/tmp
+
+[Thu Oct 24 20:52:32 2024]
+Finished job 1.
+4 of 5 steps (80%) done
+Removing temporary output rescaled_unsorted.hist.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 24 20:52:32 2024]
+localrule plot:
+    input: rescaled.hist
+    output: rescale_to_reference.png
+    jobid: 0
+    reason: Missing output files: rescale_to_reference.png; Input files updated by another job: rescaled.hist
+    resources: tmpdir=/tmp
+
+[Thu Oct 24 20:52:32 2024]
+Finished job 0.
+5 of 5 steps (100%) done
+Complete log: .snakemake/log/2024-10-24T205153.387387.snakemake.log

@@ -1,0 +1,56 @@
+host: login01
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job              count
+-------------  -------
+rescaled_hist        9
+subsample            9
+total               18
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Nov 10 16:44:26 2024]
+localrule subsample:
+    input: /home/bec51310.iitr/workplace/project/rescale_to_reference/shuf.a.bed.gz, lines_to_pull.tsv
+    output: y_shuffled_3.bed.gz, subsample/y_rescaled_3.bed.gz
+    jobid: 21
+    reason: Missing output files: subsample/y_rescaled_3.bed.gz
+    wildcards: sample=y, rep=3
+    resources: tmpdir=/tmp
+
+[Sun Nov 10 16:45:22 2024]
+Finished job 21.
+1 of 18 steps (6%) done
+Removing temporary output y_shuffled_3.bed.gz.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Nov 10 16:45:22 2024]
+localrule subsample:
+    input: /home/bec51310.iitr/workplace/project/rescale_to_reference/shuf.a.bed.gz, lines_to_pull.tsv
+    output: x_shuffled_3.bed.gz, subsample/x_rescaled_3.bed.gz
+    jobid: 17
+    reason: Missing output files: subsample/x_rescaled_3.bed.gz
+    wildcards: sample=x, rep=3
+    resources: tmpdir=/tmp
+
+Terminating processes on user request, this might take some time.
+[Sun Nov 10 16:45:38 2024]
+Error in rule subsample:
+    jobid: 17
+    input: /home/bec51310.iitr/workplace/project/rescale_to_reference/shuf.a.bed.gz, lines_to_pull.tsv
+    output: x_shuffled_3.bed.gz, subsample/x_rescaled_3.bed.gz
+    shell:
+        
+        zcat /home/bec51310.iitr/workplace/project/rescale_to_reference/shuf.a.bed.gz | shuf | gzip > x_shuffled_3.bed.gz
+        zcat x_shuffled_3.bed.gz | python scripts/rescaled.py | gzip > subsample/x_rescaled_3.bed.gz
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Complete log: .snakemake/log/2024-11-10T164425.620061.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

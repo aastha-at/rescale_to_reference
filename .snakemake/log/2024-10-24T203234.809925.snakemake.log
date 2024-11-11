@@ -1,0 +1,74 @@
+host: login01
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count
+--------------------  -------
+lines                       1
+normalise                   1
+normalised_frequency        1
+plot                        1
+subsample                   1
+total                       5
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 24 20:32:34 2024]
+localrule normalised_frequency:
+    input: shuf.a.bed.gz
+    output: query_unsorted.hist, query.hist
+    jobid: 4
+    reason: Missing output files: query.hist
+    resources: tmpdir=/tmp
+
+[Thu Oct 24 20:32:40 2024]
+Finished job 4.
+1 of 5 steps (20%) done
+Removing temporary output query_unsorted.hist.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 24 20:32:40 2024]
+localrule lines:
+    input: query.hist
+    output: lines_to_pull.tsv
+    jobid: 3
+    reason: Missing output files: lines_to_pull.tsv; Input files updated by another job: query.hist; Code has changed since last execution
+    resources: tmpdir=/tmp
+
+[Thu Oct 24 20:32:40 2024]
+Finished job 3.
+2 of 5 steps (40%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 24 20:32:40 2024]
+localrule subsample:
+    input: shuf.a.bed.gz, lines_to_pull.tsv
+    output: shuffled.bed.gz, rescaled.bed.gz
+    jobid: 2
+    reason: Missing output files: rescaled.bed.gz; Input files updated by another job: lines_to_pull.tsv
+    resources: tmpdir=/tmp
+
+[Thu Oct 24 20:33:03 2024]
+Error in rule subsample:
+    jobid: 2
+    input: shuf.a.bed.gz, lines_to_pull.tsv
+    output: shuffled.bed.gz, rescaled.bed.gz
+    shell:
+        
+        zcat shuf.a.bed.gz | shuf | gzip > shuffled.bed.gz
+        zcat shuffled.bed.gz | python scripts/rescaled.py | gzip > rescaled.bed.gz
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job subsample since they might be corrupted:
+shuffled.bed.gz, rescaled.bed.gz
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-10-24T203234.809925.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

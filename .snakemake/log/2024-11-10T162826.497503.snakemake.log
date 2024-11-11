@@ -1,0 +1,9 @@
+host: login01
+Building DAG of jobs...
+InputFunctionException in rule normalised_frequency in file /home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk, line 9:
+Error:
+  AttributeError: 'Wildcards' object has no attribute 'run'
+Wildcards:
+
+Traceback:
+  File "/home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk", line 12, in <lambda> (rule normalised_frequency, line 9, /home/bec51310.iitr/workplace/project/rescale_to_reference/test.smk)

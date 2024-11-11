@@ -1,0 +1,1 @@
+{"record_format_version": 4, "code": "python scripts/lines.py > {output}", "rule": "calculate_lines", "input": [], "log": [], "params": [], "shellcmd": "python scripts/lines.py > calculate_lines_for_query.tsv", "incomplete": false, "starttime": 1729409079.0, "endtime": 1729409079.0, "job_hash": 8766354723467, "conda_env": null, "container_img_url": null, "input_checksums": {}}

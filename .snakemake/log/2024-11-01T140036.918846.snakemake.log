@@ -1,0 +1,56 @@
+host: login06
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 40
+Rules claiming more threads will be scaled down.
+Job stats:
+job                               count
+------------------------------  -------
+normalised_frequency_and_lines        1
+subsample_and_normalise               2
+total                                 3
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Fri Nov  1 14:00:37 2024]
+localrule normalised_frequency_and_lines:
+    input: shuf.a.bed.gz
+    output: query_unsorted.hist, query.hist, lines_to_pull.tsv
+    jobid: 1
+    reason: Set of input files has changed since last execution; Code has changed since last execution
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 14:00:43 2024]
+Finished job 1.
+1 of 3 steps (33%) done
+Removing temporary output query_unsorted.hist.
+Select jobs to execute...
+Execute 2 jobs...
+
+[Fri Nov  1 14:00:45 2024]
+localrule subsample_and_normalise:
+    input: shuf.a.bed.gz, lines_to_pull.tsv
+    output: subsample/x_shuffled_0.bed.gz, subsample/x_rescaled_0.bed.gz, subsample/x_rescaled_0_unsorted.hist, subsample/x_rescaled_0.hist
+    jobid: 2
+    reason: Input files updated by another job: lines_to_pull.tsv
+    wildcards: sample=x, rep=0
+    resources: tmpdir=/tmp
+
+
+[Fri Nov  1 14:00:45 2024]
+localrule subsample_and_normalise:
+    input: shuf.a.bed.gz, lines_to_pull.tsv
+    output: subsample/y_shuffled_0.bed.gz, subsample/y_rescaled_0.bed.gz, subsample/y_rescaled_0_unsorted.hist, subsample/y_rescaled_0.hist
+    jobid: 0
+    reason: Input files updated by another job: lines_to_pull.tsv
+    wildcards: sample=y, rep=0
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 14:01:19 2024]
+Finished job 0.
+2 of 3 steps (67%) done
+[Fri Nov  1 14:01:20 2024]
+Finished job 2.
+3 of 3 steps (100%) done
+Complete log: .snakemake/log/2024-11-01T140036.918846.snakemake.log

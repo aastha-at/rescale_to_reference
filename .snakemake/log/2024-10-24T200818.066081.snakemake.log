@@ -1,0 +1,7 @@
+host: login01
+Building DAG of jobs...
+MissingInputException in rule rescale in file /home/bec51310.iitr/workplace/.project/rescale_to_reference/snakemake.smk, line 15:
+Missing input files for rule rescale:
+    output: lines_to_pull.tsv, rescaled.hist
+    affected files:
+        query_sorted.hist

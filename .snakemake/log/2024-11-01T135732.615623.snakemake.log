@@ -1,0 +1,4 @@
+host: login06
+Building DAG of jobs...
+MissingRuleException:
+No rule to produce x_rescale_0.bed.gz (if you use input functions make sure that they don't raise unexpected exceptions).

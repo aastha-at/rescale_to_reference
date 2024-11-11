@@ -1,0 +1,35 @@
+host: login01
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count
+----------------  -------
+output_frequency        1
+plot                    1
+subsample               1
+total                   3
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct 20 15:49:14 2024]
+localrule subsample:
+    input: shuf.a.bed.gz, calculate_lines_to_pull.tsv
+    output: shuffled.bed.gz, output.bed.gz
+    jobid: 2
+    reason: Missing output files: output.bed.gz; Code has changed since last execution
+    resources: tmpdir=/tmp
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in rule subsample in file /home/bec51310.iitr/workplace/project/rescale_to_reference/snakemake.smk, line 23:
+Job 2  completed successfully, but some output files are missing. Missing files after 5 seconds. This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait:
+shuffled.bed.gz (missing locally, parent dir not present)
+Removing output files of failed job subsample since they might be corrupted:
+output.bed.gz
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-10-20T154914.433151.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.
