@@ -5,7 +5,7 @@ input_df=pd.read_csv('data/metadata.tsv', header='infer')
 
 rule normalised_frequency:
     input:
-        input_df['path'][0]  # using first path from metadata
+        input_df['path'][0]
     output:
         "hist/query.hist"
     shell:
@@ -21,7 +21,7 @@ rule lines:
 
 rule subsample:
     input:
-        bed=input_df['path'][0],  # using first path from metadata
+        bed=input_df['path'][0],
         lines="lines_to_pull.tsv"
     output:
         shuffled=temp("{sample}_shuffled_{rep}.bed.gz"),
